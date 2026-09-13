@@ -1,0 +1,176 @@
+/* Haghpanah Solutions — shared styles.
+   Bilingual: <html> carries class "lang-fr" or "lang-en"; every translatable
+   element is duplicated with lang="fr" / lang="en" and one is hidden. URLs stay
+   stable, which matters because Apple and Google link the policy pages. */
+
+:root {
+  --ground:     #FAF9F6;
+  --surface:    #FFFFFF;
+  --sunk:       #F2F0EA;
+  --ink:        #15171C;
+  --muted:      #565C66;
+  --rule:       #E3E0D8;
+  --accent:     #234E92;
+  --accent-ink: #1A3C70;
+  --accent-wash:rgba(35, 78, 146, .08);
+  --sand:       #9A7B1F;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:     #121317;
+    --surface:    #1A1C21;
+    --sunk:       #202329;
+    --ink:        #ECEAE4;
+    --muted:      #9BA2AD;
+    --rule:       #2C3037;
+    --accent:     #7BA4DF;
+    --accent-ink: #A3C1EC;
+    --accent-wash:rgba(123, 164, 223, .12);
+    --sand:       #D4B455;
+  }
+}
+:root[data-theme="dark"] {
+  --ground:     #121317;
+  --surface:    #1A1C21;
+  --sunk:       #202329;
+  --ink:        #ECEAE4;
+  --muted:      #9BA2AD;
+  --rule:       #2C3037;
+  --accent:     #7BA4DF;
+  --accent-ink: #A3C1EC;
+  --accent-wash:rgba(123, 164, 223, .12);
+  --sand:       #D4B455;
+}
+
+* { box-sizing: border-box; }
+
+html.lang-fr [lang="en"], html.lang-en [lang="fr"] { display: none; }
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  margin: 0;
+  padding: 0 22px 80px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 720px; margin: 0 auto; }
+.wrap.wide { max-width: 880px; }
+
+/* ------------------------------------------------------------- chrome */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--rule);
+  flex-wrap: wrap;
+}
+.wordmark {
+  font-family: Newsreader, Georgia, serif;
+  font-size: 18px; font-weight: 600; color: var(--ink);
+  text-decoration: none; letter-spacing: -.2px;
+}
+.wordmark span { color: var(--accent); }
+.navlinks { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.navlinks a {
+  color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500;
+}
+.navlinks a:hover, .navlinks a:focus-visible { color: var(--accent); }
+
+.langtoggle {
+  background: none; border: 1px solid var(--rule); color: var(--muted);
+  font: inherit; font-size: 12px; font-weight: 600; letter-spacing: .6px;
+  padding: 4px 10px; border-radius: 4px; cursor: pointer;
+}
+.langtoggle:hover { border-color: var(--accent); color: var(--accent); }
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px;
+}
+
+/* --------------------------------------------------------------- type */
+h1 {
+  font-family: Newsreader, Georgia, serif;
+  font-weight: 500; font-size: clamp(31px, 5.5vw, 44px);
+  line-height: 1.12; letter-spacing: -.6px; margin: 42px 0 0;
+  text-wrap: balance;
+}
+h2 {
+  font-family: Newsreader, Georgia, serif;
+  font-weight: 600; font-size: 23px; line-height: 1.25;
+  margin: 44px 0 10px; letter-spacing: -.2px; text-wrap: balance;
+}
+h3 {
+  font-size: 15px; font-weight: 700; margin: 26px 0 6px;
+  letter-spacing: .2px;
+}
+p { margin: 0 0 14px; max-width: 66ch; }
+.lede { font-size: 18.5px; color: var(--muted); margin-top: 16px; max-width: 60ch; }
+.eyebrow {
+  font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+  font-weight: 700; color: var(--accent); margin: 0;
+}
+ul { max-width: 66ch; padding-left: 20px; }
+li { margin-bottom: 7px; }
+a { color: var(--accent); text-underline-offset: 2px; }
+strong { font-weight: 600; }
+.muted { color: var(--muted); }
+.small { font-size: 14px; }
+
+/* -------------------------------------------------------------- cards */
+.apps { display: grid; gap: 18px; margin-top: 26px; }
+@media (min-width: 640px) { .apps { grid-template-columns: 1fr 1fr; } }
+.app {
+  background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 10px; padding: 22px; display: flex; flex-direction: column;
+}
+.app h3 {
+  font-family: Newsreader, Georgia, serif; font-size: 20px;
+  font-weight: 600; margin: 0 0 4px; letter-spacing: -.2px;
+}
+.app .tag {
+  font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase;
+  font-weight: 700; color: var(--sand); margin: 0 0 10px;
+}
+.app p { font-size: 14.5px; color: var(--muted); margin: 0 0 16px; flex: 1; }
+.app .go {
+  font-size: 14px; font-weight: 600; text-decoration: none;
+  color: var(--accent); align-self: flex-start;
+}
+.app .go:hover { text-decoration: underline; }
+
+/* --------------------------------------------------------- policy bits */
+.meta {
+  font-size: 13.5px; color: var(--muted); margin: 14px 0 0;
+  padding: 12px 16px; background: var(--sunk); border-radius: 8px;
+  max-width: none;
+}
+.scroll { overflow-x: auto; margin: 6px 0 18px; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 440px; }
+th {
+  text-align: left; font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase;
+  color: var(--muted); font-weight: 700; padding: 0 16px 8px 0;
+  border-bottom: 1.5px solid var(--ink);
+}
+td { padding: 11px 16px 11px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+
+.callout {
+  border-left: 3px solid var(--accent); background: var(--accent-wash);
+  padding: 16px 18px; margin: 20px 0; border-radius: 0 6px 6px 0;
+}
+.callout p:last-child { margin-bottom: 0; }
+
+/* ------------------------------------------------------------- footer */
+footer {
+  margin-top: 58px; padding-top: 20px; border-top: 1px solid var(--rule);
+  font-size: 13.5px; color: var(--muted);
+}
+footer .legal { margin: 0 0 6px; }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
