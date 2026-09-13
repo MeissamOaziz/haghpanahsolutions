@@ -121,7 +121,9 @@ strong { font-weight: 600; }
 
 /* -------------------------------------------------------------- cards */
 .apps { display: grid; gap: 18px; margin-top: 26px; }
-@media (min-width: 640px) { .apps { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 640px) {
+  .apps { grid-template-columns: repeat(auto-fit, minmax(228px, 1fr)); }
+}
 .app {
   background: var(--surface); border: 1px solid var(--rule);
   border-radius: 10px; padding: 22px; display: flex; flex-direction: column;
