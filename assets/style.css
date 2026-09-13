@@ -179,3 +179,9 @@ footer a:hover { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
+
+/* the Nostrano mark on its product page */
+.appmark {
+  display: block; margin: 42px 0 16px;
+  border-radius: 22.5%; border: 1px solid var(--rule);
+}
