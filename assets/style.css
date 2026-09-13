@@ -135,6 +135,9 @@ strong { font-weight: 600; }
 .app .tag {
   font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase;
   font-weight: 700; color: var(--sand); margin: 0 0 10px;
+  /* .tag is a <p>, so .app p{flex:1} below would let it absorb half the
+     leftover height in a short card and push the title down. */
+  flex: 0 0 auto;
 }
 .app p { font-size: 14.5px; color: var(--muted); margin: 0 0 16px; flex: 1; }
 .app .go {
