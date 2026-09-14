@@ -1,0 +1,71 @@
+<!--
+  L'icône de Cap sur le Secondaire.
+
+  Une rose des vents, parce que « cap » est d'abord un mot de navigation : la
+  direction qu'on tient. C'est aussi ce qui la distingue dans sa catégorie —
+  les magasins débordent de chapeaux de finissant et de crayons, et une app
+  qu'on ne reconnaît pas sur un écran d'accueil n'est pas rouverte.
+
+  ── Ce que la première version ratait ───────────────────────────────────────
+
+  Elle a été dessinée, puis regardée aux tailles réelles. À 60 points :
+  l'aiguille se réduisait à une échine, les quatre points cardinaux tournaient
+  au grain de poussière, et une amorce d'arc bleu sur l'anneau se lisait comme
+  un défaut d'impression. Le tout flottait au milieu d'une marge trop large.
+
+  Corrections, toutes dictées par la petite taille :
+  - l'aiguille est franchement épaissie — un losange, pas une flèche ;
+  - l'anneau passe en indigo plein : à 40 points, il ne reste que deux formes,
+    un cercle et une aiguille, et il faut qu'elles se voient ;
+  - points cardinaux et arc supprimés, purement et simplement ;
+  - le motif occupe davantage la surface.
+
+  ── Contraintes de magasin ──────────────────────────────────────────────────
+
+  - Aucun texte : à 60 points, une lettre devient une tache.
+  - Fond opaque. L'App Store refuse la transparence et rejette au
+    téléversement un PNG porteur d'un canal alpha.
+  - Aucun coin arrondi dessiné ici : iOS et Android appliquent le leur, et en
+    dessiner un donne une double bordure.
+
+  Ce fichier est la source. `node scripts/build-icones.mjs` en tire les PNG.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <!-- Dégradé très retenu : à petite taille, un dégradé marqué se lit comme
+         une salissure. Deux valeurs proches suffisent à donner du volume. -->
+    <linearGradient id="sud" x1="0.3" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#3D4EBE"/>
+      <stop offset="1" stop-color="#2B3596"/>
+    </linearGradient>
+    <linearGradient id="nord" x1="0.3" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#FFC15A"/>
+      <stop offset="1" stop-color="#F0991B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fond opaque, la crème de l'app. -->
+  <rect width="1024" height="1024" fill="#FBF9F4"/>
+
+  <!-- L'anneau. Épais et en indigo plein : aux petites tailles il ne reste que
+       deux formes à l'écran, et celle-ci porte l'identité « boussole ». -->
+  <circle cx="512" cy="512" r="372" fill="none" stroke="#4C5FD5" stroke-width="46"/>
+
+  <!-- L'aiguille. Inclinée à 35° : une flèche strictement verticale se confond
+       avec une icône de téléversement, et la diagonale évoque la route suivie
+       plutôt que le simple haut. -->
+  <g transform="rotate(35 512 512)">
+    <!-- Moitié sud. -->
+    <path d="M512 512 L629 512 L512 838 L395 512 Z" fill="url(#sud)"/>
+    <!-- Moitié nord, en ambre : c'est le cap qu'on tient. L'œil s'y accroche
+         et trouve l'orientation sans avoir à chercher. -->
+    <path d="M512 512 L629 512 L512 186 L395 512 Z" fill="url(#nord)"/>
+    <!-- Arête centrale : sans elle, le losange s'aplatit en triangle. -->
+    <path d="M512 186 L512 838" stroke="#FBF9F4" stroke-width="9" opacity="0.5"/>
+  </g>
+
+  <!-- Moyeu. Le disque crème creuse l'aiguille et l'empêche de se lire comme
+       un simple triangle plein. -->
+  <circle cx="512" cy="512" r="74" fill="#2B3596"/>
+  <circle cx="512" cy="512" r="31" fill="#FBF9F4"/>
+</svg>

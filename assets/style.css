@@ -193,3 +193,13 @@ footer a:hover { color: var(--accent); }
 }
 .hero + .appmark { margin-top: -46px; margin-left: 18px; position: relative;
   box-shadow: 0 6px 18px rgba(0,0,0,.35); background: var(--surface); }
+
+/* Product marks on the app cards. flex:0 0 auto for the same reason .tag
+   carries it — .app is a column flexbox and everything in it would otherwise
+   stretch to share the leftover height. */
+.app .cardmark {
+  display: block; width: 46px; height: 46px;
+  border-radius: 11px; margin: 0 0 14px;
+  border: 1px solid var(--rule);
+  flex: 0 0 auto;
+}
