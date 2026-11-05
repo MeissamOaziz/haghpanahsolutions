@@ -21,7 +21,9 @@
 
   var saved;
   try { saved = localStorage.getItem(KEY); } catch (e) { saved = null; }
-  apply(saved === 'en' || saved === 'fr' ? saved : 'fr');
+  // An app can open a page in its own language with #en or #fr (same document).
+  var hash = (location.hash || '').slice(1);
+  apply(hash === 'en' || hash === 'fr' ? hash : saved === 'en' || saved === 'fr' ? saved : 'fr');
 
   document.addEventListener('click', function (e) {
     var btn = e.target.closest && e.target.closest('.langtoggle');
